@@ -4,7 +4,6 @@ import { Client } from "tmi.js"
 import * as THREE from 'three'
 import { gsap } from "gsap"
 
-// Need to update URLs to new domains after deploy
 export default class Network {
     constructor() {
         THREE.ColorManagement.enabled = true
@@ -88,7 +87,7 @@ export default class Network {
     }
 
     /**
-     * Parses a string chat message, checks each word, then need to render the emote. Use a placeholder for now until the emote is ready to render.
+     * Parses a string chat message, checks each word, calls createSprite to make the sprite objects
      * @param {String} chat 
      * @returns 
      */

@@ -7,7 +7,6 @@ import Resources from "./Utils/Resources"
 import Debug from "./Utils/Debug"
 import World from "./Models/World"
 import Network from "./Utils/Network"
-import Stats from "stats.js"
 
 /**
  * Here is the driver class where all of the component classes are initialized and the scene is initialized. 
@@ -42,10 +41,6 @@ export default class App {
         this.world = new World()
         this.renderer = new Renderer(this.canvas)
         this.network = new Network()
-
-        this.stats = new Stats()
-        this.stats.showPanel(0)
-        document.body.appendChild(this.stats.dom)
     }
 
     // Handles the resize event by resizing renderer and camera
@@ -56,11 +51,9 @@ export default class App {
 
     // Handles the tick function by updating camera/controls/renderer
     tick() {
-        this.stats.begin()
         this.renderer.tick()
         this.network.tick()
         if (this.world.lobotomy)
             this.world.lobotomy.tick()
-        this.stats.end()
     }
 }

@@ -3,8 +3,6 @@ import App from './App'
 
 /**
  * The camera class that contains the camera references. Also has the resize event to adjust the camera on window resize.
- * Need to figure out how to scale FOV to the size of the window vertically. Normally, it should be 40 FOV.
- * But if you scale the vertical window down, the camera will try and fit 40 FOV into the smaller area, resulting in stretching.
  */
 export default class Camera {
     constructor() {

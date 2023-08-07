@@ -53,7 +53,7 @@ export default class Utils extends EventEmitter {
     }
 
     
-    // Emits the tick event and also calculates the elapsed time and delta time, triggers a sprite clear if tabbed out
+    // Emits the tick event and also calculates the elapsed time and delta time
     tick() {
         this.elapsedTime = this.clock.getElapsedTime()
         this.delta = this.elapsedTime - this.previousTime
