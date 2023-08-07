@@ -58,7 +58,6 @@ export default class App {
     tick() {
         this.stats.begin()
         this.renderer.tick()
-        this.camera.tick()
         this.network.tick()
         if (this.world.lobotomy)
             this.world.lobotomy.tick()

@@ -2,7 +2,9 @@ import axios, { AxiosError } from "axios"
 import App from "../App"
 import { Client } from "tmi.js"
 import * as THREE from 'three'
+import { gsap } from "gsap"
 
+// Need to update URLs to new domains after deploy
 export default class Network {
     constructor() {
         THREE.ColorManagement.enabled = true
@@ -18,6 +20,9 @@ export default class Network {
             this.init()
         })
         this.focused = true
+        document.addEventListener('visibilitychange', ( event ) => {
+            this.focused = !document.hidden;
+        }, false);
 
         if (this.urlParams) {
             this.fetchChannel(this.urlParams).then((res) => {
@@ -29,7 +34,7 @@ export default class Network {
                 this.client.connect()
 
                 this.client.on('message', (channel, tags, message, self) => {
-                    if (tags.emotes) {
+                    if (tags.emotes && this.focused) {
                         for (let emote in tags.emotes) {
                             for (let i = 0; i < Math.min(tags.emotes[emote].length, 3); i++)
                                 this.createSprite({ id: emote, provider: 'Twitch' })
@@ -68,7 +73,7 @@ export default class Network {
         }).catch(async (err) => {
             if (err.response && err.response.status === 404) {
                 try {
-                    const res = await axios.get(`http://localhost:3000/emote/${emote.id}/${emote.provider}`)
+                    const res = await axios.get(`https://ecorp.anakyu.io/emote/${emote.id}/${emote.provider}`)
                     if (res.status === 201)
                         return this.fetchEmote(emote)
 
@@ -91,11 +96,11 @@ export default class Network {
         const wordArray = chat.split(' ')
         let count = 0
         wordArray.forEach(async (word) => {
-            if (count > 4)
+            if (count > 3)
                 return
             if (this.emoteList.hasOwnProperty(word)) {
                 const id = this.emoteList[word]['id']
-                count += 1
+                count++
                 this.createSprite(this.emoteList[word])
             }
         })
@@ -108,10 +113,9 @@ export default class Network {
      * @returns 
      */
     async createSprite(emote) {
-        if (this.poolSprites.length === 0) {
-            console.log('Out of sprites')
+        if (this.poolSprites.length === 0)
             return
-        }
+        
         const sprite = this.poolSprites.shift()
         if (!this.textureMap[emote.id]) {
             this.textureMap[emote.id] = {
@@ -129,29 +133,33 @@ export default class Network {
             sprite.material.map = this.textureMap[emote.id]['texture'][0]
             sprite.material.color = new THREE.Color('#cccccc')
             sprite.scale.x = (1 / res.height) * res.width * 0.15
+            sprite.scale.y = 0.15
             sprite.material.lastUpdateTime = 0
             sprite.material.textureID = emote.id
             sprite.vector = new THREE.Vector2(Math.random() < 0.5 ? -1 : 1, Math.random() < 0.5 ? -1 : 1)
             sprite.position.set((Math.random() - 0.5) * 2, (Math.random() * 1.25) + 0.1, 0)
             this.renderArray.push(sprite)
             setTimeout(() => {
-                this.poolSprites.push(this.renderArray.shift())
-                sprite.position.x = -5
-            }, 5000)
-        }).catch()
+                gsap.to(sprite.scale, { duration: 2.0, x: 0, y: 0, onComplete: () => { 
+                    sprite.position.x = -5
+                    this.poolSprites.push(this.renderArray.shift())
+                 } })
+            }, 10000)
+        }).catch((e) => {
+        })
         
     }
 
     async fetchChannel(channel) {
         try {
-            return await axios.get(`http://localhost:3000/${channel}`)
+            return await axios.get(`https://ecorp.anakyu.io/${channel}`)
         } catch (err) {
             console.log('Either this channel does not exist or something went wrong!')
         }
     }
 
     init() {
-        const size = 500
+        const size = 100
         this.poolSprites = new Array(size)
         for (let i = 0; i < size; i++) {
             this.poolSprites[i] = new THREE.Sprite(new THREE.SpriteMaterial({ map: this.app.resources.items['spritePlaceholder'], depthWrite: false }))

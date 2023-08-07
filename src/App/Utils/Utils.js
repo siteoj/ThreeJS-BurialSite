@@ -56,10 +56,6 @@ export default class Utils extends EventEmitter {
     // Emits the tick event and also calculates the elapsed time and delta time, triggers a sprite clear if tabbed out
     tick() {
         this.elapsedTime = this.clock.getElapsedTime()
-        if (this.elapsedTime - this.previousTime > 5)
-            this.app.network.focused = false
-        else
-            this.app.network.focused = true
         this.delta = this.elapsedTime - this.previousTime
         this.previousTime = this.elapsedTime
         this.trigger('tick')
