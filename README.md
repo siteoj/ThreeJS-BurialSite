@@ -1,6 +1,8 @@
 Lobotomy Corp themed ThreeJS environment with some Twitch functionality
 
-Front-end code only
+Plug this URL into an OBS browser source and put your channel name in to have it display emotes from your chat
+
+This repo contains front-end code only
 
 If the website doesn't work, it's probably because the backend servers are spinning up after shutting down (or Cloudflare is being weird)
 
