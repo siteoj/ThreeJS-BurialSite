@@ -159,7 +159,7 @@ export default class Lobotomy { // 定义并导出 Lobotomy 类
 
         // 创建埋葬通知文本对象
         const burialText = new Text()
-        burialText.text = '此处设施已完成掩埋。\n如有任何投诉或疑问，请参阅您与Lobotomy Corporation签订的雇佣合同。\n我们感谢您的辛勤与真挚付出。' // 多行文本
+        burialText.text = '此处设施已完成掩埋。\n如有任何投诉或疑问\n请参阅您与Lobotomy Corporation签订的雇佣合同。\n我们感谢您的辛勤与真挚付出。' // 多行文本
         burialText.font = this.app.resources.items.Font.parameters.font
         burialText.fontSize = 0.05
         burialText.lineHeight = 1.3 // 设置行高
