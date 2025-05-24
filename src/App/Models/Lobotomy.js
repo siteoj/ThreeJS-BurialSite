@@ -100,7 +100,7 @@ export default class Lobotomy { // 定义并导出 Lobotomy 类
     generateText() { // 生成文本的方法
         // 创建标题文本对象
         const titleText = new Text()
-        titleText.text = '埋葬协议' // 文本内容
+        titleText.text = '埋葬■■' // 文本内容
         titleText.font = this.app.resources.items.Font.parameters.font // 字体文件路径
         titleText.fontSize = 0.1 // 字体大小
         titleText.position.set(0.43, 0.79, 4.55) // 文本位置
@@ -122,7 +122,7 @@ export default class Lobotomy { // 定义并导出 Lobotomy 类
 
         // 创建位置文本对象
         const locationText = new Text()
-        locationText.text = '惩戒部'
+        locationText.text = '■戒部'
         locationText.font = this.app.resources.items.Font.parameters.font
         locationText.fontSize = 0.075
         locationText.position.set(0.41, 0.628, 4.58)
@@ -159,7 +159,7 @@ export default class Lobotomy { // 定义并导出 Lobotomy 类
 
         // 创建埋葬通知文本对象
         const burialText = new Text()
-        burialText.text = '此处设施已完成掩埋。\n如有任何投诉或疑问\n请参阅您与Lobotomy Corporation签订的雇佣合同。\n我们感谢您的辛勤与真挚付出。' // 多行文本
+        burialText.text = '此■■施已完成掩埋。\n如有任何投■或疑■\n■参■您与Lobotomy Corporation■■的雇\n佣合同。\n我■感■您的辛勤与真■付出。' // 多行文本
         burialText.font = this.app.resources.items.Font.parameters.font
         burialText.fontSize = 0.05
         burialText.lineHeight = 1.3 // 设置行高
