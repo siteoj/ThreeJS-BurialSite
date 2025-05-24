@@ -37,7 +37,7 @@ export default [
     {
         name: 'Font',
         type: 'font',
-        path: 'BebasKai.otf'
+        path: 'GenRyuMinJP-Heavy.ttf'
     },
     {
         name: 'Logo',
