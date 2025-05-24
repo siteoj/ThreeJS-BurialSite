@@ -83,7 +83,7 @@ export default class Lobotomy {
 
     generateText() {
         const titleText = new Text()
-        titleText.text = 'BUrial Protocol'
+        titleText.text = '埋葬协议'
         titleText.font = this.app.resources.items.Font.parameters.font
         titleText.fontSize = 0.1
         titleText.position.set(0.43, 0.79, 4.55)
@@ -93,7 +93,7 @@ export default class Lobotomy {
         this.app.scene.add(titleText)
 
         const branchText = new Text()
-        branchText.text = 'Branch O-251'
+        branchText.text = '支部 O-251'
         branchText.font = this.app.resources.items.Font.parameters.font
         branchText.fontSize = 0.075
         branchText.position.set(0.42, 0.7, 4.566)
@@ -103,7 +103,7 @@ export default class Lobotomy {
         this.app.scene.add(branchText)
 
         const locationText = new Text()
-        locationText.text = 'Disciplinary Department'
+        locationText.text = '惩戒部'
         locationText.font = this.app.resources.items.Font.parameters.font
         locationText.fontSize = 0.075
         locationText.position.set(0.41, 0.628, 4.58)
@@ -129,7 +129,7 @@ export default class Lobotomy {
             } }, "-=100%")
         
         const burialText = new Text()
-        burialText.text = 'Site burial complete\nIf you have any complaints or inquiries, \nplease refer to the Lobotomy Corp. employment contract.\nWe thank you for your hard and earnest work.'
+        burialText.text = '此处设施已完成掩埋。\n如有任何投诉或疑问，请参阅您与Lobotomy Corporation签订的雇佣合同。\n我们感谢您的辛勤与真挚付出。'
         burialText.font = this.app.resources.items.Font.parameters.font
         burialText.fontSize = 0.05
         burialText.lineHeight = 1.3
@@ -139,16 +139,16 @@ export default class Lobotomy {
         burialText.sync()
         this.app.scene.add(burialText)
 
-        const streamText = new Text()
-        streamText.text = `(P.S. If you're looking for the stream function, type ?channel=name here after the URL)\n(P.P.S. You can control the brightness by typing &brightness=number here after the channel)`
-        streamText.font = this.app.resources.items.Font.parameters.font
-        streamText.fontSize = 0.025
-        streamText.lineHeight = 1.3
-        streamText.position.set(0.44, 0.4, 4.7)
-        streamText.color = '#d9d9d9'
-        streamText.rotation.set(-0.27, -0.611, -0.159)
-        streamText.sync()
-        this.app.scene.add(streamText)
+        // const streamText = new Text()
+        // streamText.text = `(P.S. If you're looking for the stream function, type ?channel=name here after the URL)\n(P.P.S. You can control the brightness by typing &brightness=number here after the channel)`
+        // streamText.font = this.app.resources.items.Font.parameters.font
+        // streamText.fontSize = 0.025
+        // streamText.lineHeight = 1.3
+        // streamText.position.set(0.44, 0.4, 4.7)
+        // streamText.color = '#d9d9d9'
+        // streamText.rotation.set(-0.27, -0.611, -0.159)
+        // streamText.sync()
+        // this.app.scene.add(streamText)
 
         timeline.from(burialText.position, { duration: 3.0, ease: 'power4', x: 0.45, y: 0.7, z: 4.7 })
             .from(burialText.material, { duration: 3.0, ease: 'power2.inOut', opacity: 0}, "-=100%")
